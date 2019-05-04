@@ -6,7 +6,7 @@
  * @Author David Brightley
  */
 const _ = require('underscore');
-const Errors = require('../errors');
+const ErrorHandler = require('../utils/error_handler');
 const Promise = require('bluebird');
 
 const buildSortedQuery = require('../utils/sorted_query');
@@ -90,7 +90,7 @@ class API {
 
         app.get(path + '/:' + identifier, function (req, res, next) {
             if (!req.user) {
-                throw Errors.PermissionDenied();
+                throw ErrorHandler.PermissionDenied();
             }
 
             const model = new Model();
@@ -126,7 +126,7 @@ class API {
 
         app.post(path, function (req, res, next) {
             if (!req.user) {
-                throw Errors.PermissionDenied();
+                throw ErrorHandler.PermissionDenied();
             }
 
             const model = new Model();
@@ -142,7 +142,7 @@ class API {
             // console.log("User: ", req.user.related('roles').toJSON());
             // console.log("Model: ", req.body);
             if (!model.hasPermissionTo('manage', req.user)) {
-                throw Errors.PermissionDenied();
+                throw ErrorHandler.PermissionDenied();
             }
 
             const createOrUpdateModel = function () {
@@ -159,7 +159,7 @@ class API {
                     })
                     .catch(function (error) {
                         if (error && error.message && /duplicate key value violates unique/.test(error.message)) {
-                            error = Errors.Exists(name);
+                            error = ErrorHandler.Exists(name);
                         }
 
                         next(error);
@@ -194,7 +194,7 @@ class API {
 
         app.put(path + '/:' + identifier, function (req, res, next) {
             if (!req.user) {
-                throw Errors.PermissionDenied();
+                throw ErrorHandler.PermissionDenied();
             }
 
             const model = new Model();
@@ -207,7 +207,7 @@ class API {
                         model.setFromRequest(req.body);
                         return model.save();
                     } else {
-                        throw Errors.PermissionDenied();
+                        throw ErrorHandler.PermissionDenied();
                     }
                 })
                 .then(function () {
@@ -218,7 +218,7 @@ class API {
                 })
                 .catch(function (error) {
                     if (error && error.message && /duplicate key value violates unique/.test(error.message)) {
-                        error = Errors.Exists(name);
+                        error = ErrorHandler.Exists(name);
                     }
 
                     next(error);
@@ -227,7 +227,7 @@ class API {
 
         app.delete(path + "/:" + identifier, function (req, res, next) {
             if (!req.user) {
-                throw Errors.PermissionDenied();
+                throw ErrorHandler.PermissionDenied();
             }
 
             const model = new Model();
@@ -238,7 +238,7 @@ class API {
                         return hardDelete ? model.destroy() :
                             model.set('visible', false) && model.save();
                     } else {
-                        throw Errors.PermissionDenied();
+                        throw ErrorHandler.PermissionDenied();
                     }
                 })
                 .then(function () {
