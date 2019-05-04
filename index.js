@@ -1,7 +1,7 @@
-import API from './libs/api';
-import Model from './libs/model';
+const API = require('./libs/api');
+const Model = require('./libs/model');
 
-export default {
+module.exports = {
 	API,
 	Model
-}
+};
