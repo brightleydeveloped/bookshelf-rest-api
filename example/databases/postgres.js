@@ -1,7 +1,7 @@
 const Bookshelf = require('bookshelf');
 const config = require('../config');
 
-const Model = require('../libs/model');
+const {Model} = require('bookshelf-rest-api/libs/model');
 
 const knex = require('knex')({
     client: 'pg',
@@ -15,7 +15,7 @@ const knex = require('knex')({
 
 var bookshelf = Bookshelf(knex);
 
-bookshelf.plugin('pagination');
+// bookshelf.plugin('pagination');
 
 bookshelf.Model = bookshelf.Model.extend(Model);
 

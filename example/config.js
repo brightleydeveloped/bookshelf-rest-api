@@ -13,4 +13,5 @@ config.database.postgres = process.env.DATABASE_URL || "postgres://local:passwor
 if(production) {
 	config.database.postgres += "?ssl=true"
 }
+
 module.exports = config;

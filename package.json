@@ -30,6 +30,7 @@
   "homepage": "https://github.com/brightleydeveloped/bookshelf-rest-api#readme",
   "dependencies": {
     "bluebird": "^3.5.4",
-    "underscore": "^1.9.1"
+    "underscore": "^1.9.1",
+    "uuid": "^3.3.2"
   }
 }
