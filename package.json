@@ -1,0 +1,35 @@
+{
+  "name": "bookshelf-rest-api",
+  "version": "1.0.0",
+  "description": "Quickly build a rest API with little to no thought if you're using Bookshelf.js for your models ",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brightleydeveloped/bookshelf-rest-api.git"
+  },
+  "keywords": [
+    "bookshelf",
+    "bookshelfjs",
+    "rest",
+    "rest",
+    "api",
+    "api",
+    "node",
+    "nodejs",
+    "postgres",
+    "api"
+  ],
+  "author": "David Brightley",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/brightleydeveloped/bookshelf-rest-api/issues"
+  },
+  "homepage": "https://github.com/brightleydeveloped/bookshelf-rest-api#readme",
+  "dependencies": {
+    "bluebird": "^3.5.4",
+    "underscore": "^1.9.1"
+  }
+}
