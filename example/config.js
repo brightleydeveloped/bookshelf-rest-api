@@ -1,9 +1,6 @@
 /*
  * Copyright (c) 2018. Brightley Developed -- www.brightleydeveloped.com
  */
-
-require('dotenv').config();
-
 const production = process.env.NODE_ENV === "production";
 
 const config = {};

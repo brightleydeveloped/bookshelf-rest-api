@@ -1,6 +1,6 @@
 {
   "name": "bookshelf-rest-api",
-  "version": "1.0.2",
+  "version": "2.0.1",
   "description": "Quickly build a rest API with little to no thought if you're using Bookshelf.js for your models ",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,17 @@
   "homepage": "https://github.com/brightleydeveloped/bookshelf-rest-api#readme",
   "dependencies": {
     "bluebird": "^3.5.4",
+    "body-parser": "^1.19.0",
+    "bookshelf": "^0.15.1",
+    "bookshelf-eloquent": "^0.1.15",
+    "express": "^4.17.1",
+    "knex": "^0.19.2",
+    "pg": "^7.12.1",
     "underscore": "^1.9.1",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "should": "^13.2.3",
+    "supertest": "^4.0.2"
   }
 }
