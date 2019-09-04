@@ -112,7 +112,7 @@ describe('API functions', function() {
 
   it("should find objects", (done) => {
     request(app)
-      .get('/user/?sort=created&order=DESC')
+      .get('/user/?sort=created&order=DESC&query={"name":["' + NEW_TEST_NAME + '"]}')
       .expect('Content-Type', /json/)
       .expect(200)
       .end((error, res) => {

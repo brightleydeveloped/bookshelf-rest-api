@@ -11,14 +11,14 @@ module.exports = function(Model, options, modelOptions) {
     userIdKey,
     withRelated,
     withCounts,
-    searchFields,
+	  modifyRequestBeforeSearch,
 	  requireUser
   } = {
     ...options,
     ...modelOptions
   };
 
-  const getAllRoute = function (req, res, next) {
+  const getAllRoute = async function (req, res, next) {
     if (requireUser && !req.user) {
       handleError(res, {code: 403, message: strings.PERMISSION_DENIED })
       return;
@@ -28,7 +28,16 @@ module.exports = function(Model, options, modelOptions) {
     if (req.query.query) {
       try {
         let request_query = JSON.parse(req.query.query);
-        model.where(request_query);
+
+	      if(modifyRequestBeforeSearch) {
+		      request_query = await modifyRequestBeforeSearch(req, request_query, model);
+	      }
+
+        for(const key in request_query) {
+          const asArray = Array.isArray(request_query[key]) ? request_query[key]: [request_query[key]];
+	        model.query((qb) => qb.whereIn(key, asArray));
+        }
+
       } catch (e) {
         console.log("Unreadable query", req.query.query);
       }

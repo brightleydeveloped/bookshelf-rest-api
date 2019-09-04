@@ -1,6 +1,6 @@
 {
   "name": "bookshelf-rest-api",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Quickly build a rest API with little to no thought if you're using Bookshelf.js for your models ",
   "main": "index.js",
   "scripts": {

@@ -3,7 +3,7 @@ const buildSearchQuery = require('../utils/search_query');
 const {handleSuccess, handleError} = require('../utils/handlers');
 const strings = require('../strings/en.json');
 
-module.exports = function (subroute, options) {
+module.exports = async function (subroute, options) {
   const {
     identifier,
     saveUserId,
@@ -35,7 +35,10 @@ module.exports = function (subroute, options) {
           request_query = await modifyRequestBeforeSearch(req, request_query, model);
         }
 
-        model.where(request_query);
+	      for(const key in request_query) {
+		      const asArray = Array.isArray(request_query[key]) ? request_query[key]: [request_query[key]];
+		      model.query((qb) => qb.whereIn(key, asArray));
+	      }
       } catch (e) {
         console.log("Unreadable query", req.query.query, e);
       }
