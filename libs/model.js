@@ -21,6 +21,8 @@ const Model = {
 
 	required_fields: [],
 
+	unique_fields: [],
+
 	autoset_fields: ['id', 'created', 'updated'],
 
 	search_field: '',

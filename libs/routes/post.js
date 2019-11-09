@@ -37,7 +37,7 @@ module.exports = function(Model, options, modelOptions) {
         });
     };
 
-    if (model.unique_fields) {
+    if (model.unique_fields && model.unique_fields.length) {
       model.unique_fields.forEach(function (field) {
         if (req.body[field]) {
           model.set(field, req.body[field]);
