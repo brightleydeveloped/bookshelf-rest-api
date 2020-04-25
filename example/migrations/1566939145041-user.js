@@ -24,7 +24,7 @@ exports.up = function(next) {
 	}).then(function() {
 		next();
 	})
-  .caught(function(error) {
+  .catch(function(error) {
     console.error(error.message);
     next(error);
     //next();
@@ -36,7 +36,7 @@ exports.down = function(next) {
 			.then(function() {
 				next();
 			})
-			.caught(function(error) {
+			.catch(function(error) {
 				console.error(error.message);
 				next();
 			});
